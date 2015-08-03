@@ -1,14 +1,28 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Remote;
+using OpenQA.Selenium.Support.UI;
+using System;
+using NUnit.Framework;
 
-namespace mygenericproject
-{
-    [TestClass]
-    public class UnitTest1
-    {
-        [TestMethod]
-        public void TestMethod1()
-        {
-        }
+namespace php4dvdtests {
+  [TestFixture()]
+  public class Php4DvdTests {
+    [Test()]
+    public void LoginTest() {
+      IWebDriver wd = new FirefoxDriver();
+      try {
+        wd.Navigate().GoToUrl("http://localhost/php4dvd/");
+        wd.FindElement(By.Id("username")).Click();
+        wd.FindElement(By.Id("username")).Clear();
+        wd.FindElement(By.Id("username")).SendKeys("admin");
+        wd.FindElement(By.Name("password")).Click();
+        wd.FindElement(By.Name("password")).Clear();
+        wd.FindElement(By.Name("password")).SendKeys("admin");
+        wd.FindElement(By.Name("submit")).Click();
+        wd.FindElement(By.LinkText("Log out")).Click();
+        wd.SwitchTo().Alert().Accept();
+      } finally { wd.Quit(); }
     }
+  }
 }
