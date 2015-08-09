@@ -13,11 +13,13 @@ namespace php4dvdtests {
     [Test()]
     public void LoginTest() {
         DesiredCapabilities capabilities = DesiredCapabilities.Firefox();
-        //capabilities.SetCapability("username", "kolersa");
-        //capabilities.SetCapability("accessKey", "8d5fcb61-3942-4421-b9c3-6bee8f0508ed");
-        //IWebDriver wd = new RemoteWebDriver(new Uri("http://ondemand.saucelabs.com:80/wd/hub"),capabilities);
-        IWebDriver wd = new RemoteWebDriver(new Uri("http://192.168.1.9:4444/wd/hub"), 
-            capabilities); 
+        //Для подключения к saucelab
+        /*capabilities.SetCapability("username", "kolersa");
+        capabilities.SetCapability("accessKey", "8d5fcb61-3942-4421-b9c3-6bee8f0508ed");
+        IWebDriver wd = new RemoteWebDriver(new Uri("http://ondemand.saucelabs.com:80/wd/hub"),capabilities);*/
+        
+        //Для подключения к удаленной машине
+        IWebDriver wd = new RemoteWebDriver(new Uri("http://192.168.1.16:4444/wd/hub"), capabilities); 
       try {
         wd.Navigate().GoToUrl("http://192.168.1.3/php4dvd/");
         wd.FindElement(By.Id("username")).Click();
