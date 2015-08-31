@@ -19,7 +19,10 @@ namespace php4dvdtests {
         IWebDriver wd = new RemoteWebDriver(new Uri("http://ondemand.saucelabs.com:80/wd/hub"),capabilities);*/
         
         //Для подключения к удаленной машине
-        IWebDriver wd = new RemoteWebDriver(new Uri("http://192.168.41.10:4444/wd/hub"), capabilities); 
+        //IWebDriver wd = new RemoteWebDriver(new Uri("http://192.168.41.10:4444/wd/hub"), capabilities); 
+
+        //Для локальной машины
+        IWebDriver wd = new FirefoxDriver();
       try {
         wd.Navigate().GoToUrl("http://192.168.3.66/php4dvd/");
         wd.FindElement(By.Id("username")).Click();
